@@ -888,6 +888,9 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
     }
 
     public void facebookSignInNative() {
+        Log.d(">>>>>>>>>>>>>>>>1", "facebookSignInNative");
+        Log.d(">>>>>>>>>>>>>>>>2", AccessToken.getCurrentAccessToken().getToken());
+
         GraphRequest request = GraphRequest.newMeRequest(
                 AccessToken.getCurrentAccessToken(),
                 new GraphRequest.GraphJSONObjectCallback() {
@@ -900,36 +903,37 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
 
                             AccessToken accessToken = AccessToken.getCurrentAccessToken();
 
-                            SingleUserModel singleUserModel = new SingleUserModel(
-                                    "",
-                                    "",
-                                    email,
-                                    accessToken.getToken(),
-                                    "",
-                                    "",
-                                    "facebook",
-                                    Locale.getDefault().getDisplayLanguage(),
-                                    "android"
-                            );
+                            if(accessToken != null){
+                                SingleUserModel singleUserModel = new SingleUserModel(
+                                        "",
+                                        "",
+                                        email,
+                                        accessToken.getToken(),
+                                        "",
+                                        "",
+                                        "facebook",
+                                        Locale.getDefault().getDisplayLanguage(),
+                                        "android"
+                                );
 
 
-                            Gson gson = new Gson();
-                            String json = gson.toJson(singleUserModel);
-                            Log.d(">>>>", json);
+                                Gson gson = new Gson();
+                                String json = gson.toJson(singleUserModel);
+                                Log.d(">>>>", json);
 
-                            String requestBody = "'facebookSignIn', " + "'" + json + "'";
-                            String jsFunction = "javascript:callMethodFromDevice(" + requestBody + ")";
-                            Log.d("jsFunction: ", jsFunction);
-                            mWebView.loadUrl(jsFunction);
+                                String requestBody = "'facebookSignIn', " + "'" + json + "'";
+                                String jsFunction = "javascript:callMethodFromDevice(" + requestBody + ")";
+                                Log.d("jsFunction: ", jsFunction);
+                                mWebView.loadUrl(jsFunction);
 
-                            final Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    llProgressBar.setVisibility(View.GONE);
-                                }
-                            }, 3000);
-
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        llProgressBar.setVisibility(View.GONE);
+                                    }
+                                }, 3000);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
