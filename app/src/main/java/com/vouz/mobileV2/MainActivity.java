@@ -32,7 +32,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
+import android.content.pm.PackageManager;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -135,12 +135,11 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-//        googleApiClient = new GoogleApiClient().Builder(this.)
-
     }
 
     private void handleGoogleSingInResult(Task<GoogleSignInAccount> completedTask) {
         try {
+            Log.d("before","before");
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
 //            UserSignInModel userSignInModel = new UserSignInModel();
@@ -152,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
 //            String name, String surname, String email, String token, String url_photo,
 //            String login_type, String code, String usuario, String type, String language
             if (account != null) {
+                Log.d("firstline","firstline");
 
 //                SingleUserModel singleUserModel = new SingleUserModel(
 //                        account.getGivenName() != null ? account.getGivenName() : "",
@@ -199,9 +199,7 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
 
         } catch (ApiException e) {
 //            Toast.makeText(MainActivity.this, e.getStatusCode() + "", Toast.LENGTH_LONG).show();
-            Log.d("TAG1", e.getLocalizedMessage());
-            Log.d("TAG2", e.getStatusCode() + "");
-            Log.d("TAG3", e.getMessage());
+            Log.w("TAG1", "handleSignInResult:error", e);
 //            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
@@ -429,6 +427,7 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
         super.onCreate(savedInstanceState);
         Log.e("onCreate", "onCreate");
         setContentView(R.layout.activity_main);
+        // Add code to print out the key hash
 
         tokenEditText = findViewById(R.id.tokenEditText);
         previewLoadingLinearLayout = findViewById(R.id.previewLoadingLinearLayout);
@@ -490,10 +489,10 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
             Log.e("checkSavedCredentials()", checkSavedCredentials() + "");
             Log.e("setCredentials", setCredentials + "");
 
-            if (checkSavedCredentials()) {
+            /*if (checkSavedCredentials()) {
                 llProgressBar.setVisibility(View.VISIBLE);
                 credentialsSignIn();
-            }
+            }*/
         }
 
 //        try {
@@ -616,32 +615,33 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.e("onActivityResult", "onActivityResult");
+        Log.e("onActivityResult", "onActivityResultasssssss");
 
         mWebView.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
 
-            showTransparentLoadingDialog();
+            //showTransparentLoadingDialog();
 
-            Log.d("RC_SIGN_IN", RC_SIGN_IN + " ");
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            assert result != null;
+            Log.d("RC_SIGN_IN", RC_SIGN_IN + " Google");
+            //GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            //assert result != null;
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
             handleGoogleSingInResult(task);
 
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
+            //final Handler handler = new Handler();
+            Log.d("RC_SIGN_IN2", RC_SIGN_IN + " Google");
+            /*handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (transparentLoaderLinearLayout.getVisibility() == View.VISIBLE) {
                         hideTransparentLoadingDialog();
                     }
                 }
-            }, 500);
+            }, 500);*/
 
         } else {
-
+            Log.d("RC_SIGN_IN", RC_SIGN_IN + " else");
             showTransparentLoadingDialog();
             callbackManager.onActivityResult(requestCode, resultCode, data);
             super.onActivityResult(requestCode, resultCode, data);
@@ -756,14 +756,15 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
 
         previewLoadingLinearLayout.setVisibility(View.GONE);
 
-        if (checkFacebookLogin()) {
+        /*if (checkFacebookLogin()) {
             llProgressBar.setVisibility(View.VISIBLE);
+            Log.e("----", "facebookSingInNative");
             facebookSignInNative();
         } else if (checkGoogleLogin()) {
             llProgressBar.setVisibility(View.VISIBLE);
-            Log.d("----", "googleSingInNative123");
+            Log.e("----", "googleSingInNative");
             googleSingInNative();
-        }
+        }*/
 
         getCurrentLocation();
 
@@ -1118,6 +1119,7 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
             mWebView.post(new Runnable() {
                 @Override
                 public void run() {
+                    Log.e("googleLogin", "googleLogin");
                     Intent intent = mGoogleSignInClient.getSignInIntent();
                     startActivityForResult(intent, RC_SIGN_IN);
                 }

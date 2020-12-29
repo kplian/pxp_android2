@@ -36,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "350057780263-2v1tr23u8dm7ghk5cmdvak6s4ihfukag.apps.googleusercontent.com",
+              "client_id": "350057780263-0nfiloff69dju5m00jps0v8knabp1dur.apps.googleusercontent.com",
               "client_type": 3
             },
             {
@@ -72,7 +72,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "350057780263-2v1tr23u8dm7ghk5cmdvak6s4ihfukag.apps.googleusercontent.com",
+              "client_id": "350057780263-0nfiloff69dju5m00jps0v8knabp1dur.apps.googleusercontent.com",
               "client_type": 3
             },
             {
@@ -95,11 +95,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "350057780263-7276q6sms65nsu84r32gbg998t4ocpde.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vouz.mobileV2",
+            "certificate_hash": "625a693a304f7a9c7e0a9ba51833356ef62c8dfb"
+          }
+        },
+        {
           "client_id": "350057780263-8ue4gfci0sivtfbkbpfcksjcd82h37lt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.vouz.mobileV2",
             "certificate_hash": "eab4ba74f46cd3d67324c0c52c0171cc4ae04534"
+          }
+        },
+        {
+          "client_id": "350057780263-k5p30efrklda7t980qd9tsk9270fosh8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vouz.mobileV2",
+            "certificate_hash": "29241826629149df68607ca1cb1dc62a1e8b6a04"
           }
         },
         {
@@ -124,7 +140,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "350057780263-2v1tr23u8dm7ghk5cmdvak6s4ihfukag.apps.googleusercontent.com",
+              "client_id": "350057780263-0nfiloff69dju5m00jps0v8knabp1dur.apps.googleusercontent.com",
               "client_type": 3
             },
             {

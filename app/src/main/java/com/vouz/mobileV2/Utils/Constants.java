@@ -5,8 +5,8 @@ public class Constants {
     //    http://192.168.0.145:3000
 //    http://dev.native.citas.kplian.com/login
     private static final String PROTOCOL = "https://";
-//    public static final String HOST = "test.vouz.me/";
-    public static final String HOST = "vouz.me/";
+   public static final String HOST = "test.vouz.me/";
+//    public static final String HOST = "vouz.me/";
 //
 //    private static final String PROTOCOL = "http://";
 //    public static final String HOST = "192.168.0.145";
